@@ -1,0 +1,4 @@
+# osu! Ladders
+
+## Description
+uhhhhhhhh
