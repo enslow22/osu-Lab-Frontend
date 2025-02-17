@@ -3,7 +3,6 @@
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import ChevronRight from "lucide-svelte/icons/chevron-right";
 	import type { ComponentProps } from "svelte";
-	import ModeSwapper from "./mode-swapper.svelte";
 	import { Title } from "./ui/sheet";
 	import SidebarGroup from "./ui/sidebar/sidebar-group.svelte";
 	import * as Popover from "$lib/components/ui/popover/index.js";
@@ -158,11 +157,7 @@
 		</SidebarGroup>
 	</Sidebar.Content>
 	<Sidebar.Footer>
-		<div class="flex justify-between gap-2">
-			<ModeSwapper />
-			<a href="https://osu.ppy.sh/users/enslow"><p class="px-5">Me!</p></a
-			>
-		</div>
+		<p>:3</p>
 	</Sidebar.Footer>
 	<Sidebar.Rail />
 </Sidebar.Root>
