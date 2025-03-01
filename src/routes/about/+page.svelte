@@ -6,18 +6,11 @@
     export const svgSize = 45;
 </script>
 
-<header class="h-16 flex shrink-0 items-center gap-2 border-b px-4">
-    <SidebarTrigger class="-ml-1" />
-    <Separator orientation="vertical" class="mr-2 h-4" />
-    <h1>About</h1>
-    <AuthButton />
-</header>
-
 <div class="p-8 flex-1">
     <div class="max-w-4xl mx-auto">
-        <h1 class="text-4xl font-bold mb-4">What is osu!Ladders?</h1>
+        <h1 class="text-4xl font-bold mb-4">What is osu!Lab?</h1>
         <p class="text-2xl mb-2 italic leading-relaxed">
-            osu!Ladders attempts to recognize the achievements of the
+            osu!Lab attempts to recognize the achievements of the
             dedicated players who grind underrepresented and unorthodox playstyles, and to provide players with detailed data analytics about themselves and their friends.
         </p>
 

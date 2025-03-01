@@ -120,6 +120,9 @@ const config: Config = {
 		},
 	},
 	plugins: [layerstack, tailwindcssAnimate],
+	colors: {
+		bermuda: '#78dcca',
+	}
 };
 
 export default config;

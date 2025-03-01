@@ -28,24 +28,34 @@
 				],
 			},
 			{
-				title: "Stats",
+				title: "Leaderboards",
 				url: "#",
 				items: [
 					{
-						title: "Leaderboards",
+						title: "List of Leaderboards",
 						url: "/leaderboards",
-						isActive: false,
+						isActive: false
 					},
 					{
-						title: "Tags",
-						url: "/tags",
-						isActive: false,
-					},
+						title: "Create a Leaderboard",
+						url: "/create_leaderboard",
+						isActive: false
+					}
+				]
+			},
+			{
+				title: "Stats",
+				url: "#",
+				items: [
 					{
 						title: "Users",
 						url: "/users",
 						isActive: false,
 					},
+					{
+						title: "Me!",
+						isActive: false,
+					}
 				],
 			},
 			{
@@ -55,6 +65,11 @@
 					{
 						title: "Documentation",
 						url: "https://api.enslow.me/docs",
+						isActive: false,
+					},
+					{
+						title: "Query Builder",
+						url: "/query_builder",
 						isActive: false,
 					},
 					{
@@ -70,13 +85,15 @@
 		ref = $bindable(null),
 		...restProps
 	}: ComponentProps<typeof Sidebar.Root> = $props();
+
+	let user_id_form = $state();
 </script>
 
 <Sidebar.Root bind:ref {...restProps}>
 	<Sidebar.Header>
 		<a href="/"
 			><h1 class="px-2 text-4xl font-bold hover:animate-pulse">
-				osu!Ladders
+				osu!Lab
 			</h1></a
 		>
 	</Sidebar.Header>
@@ -141,10 +158,9 @@
 												<Input
 													type="user_id"
 													placeholder="user id or username"
+													bind:value={user_id_form}
 												/>
-												<Button type="submit"
-													>search</Button
-												>
+												<a href="/users/{user_id_form}"><Button type="submit">search</Button></a>
 											</form>
 										</div></Popover.Content
 									>

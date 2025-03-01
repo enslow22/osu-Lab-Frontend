@@ -1,4 +1,4 @@
-# osu! Ladders
+# osu! Lab
 
 ## Description
 uhhhhhhhh

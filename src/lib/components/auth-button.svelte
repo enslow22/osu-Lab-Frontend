@@ -2,7 +2,6 @@
     import * as Popover from "$lib/components/ui/popover/index.js";
     // Assume `authenticated` is a boolean that determines if the user is authenticated
     let authenticated = false;
-
     // Function to toggle authentication status (for demonstration purposes)
     function toggleAuth() {
         authenticated = !authenticated;
