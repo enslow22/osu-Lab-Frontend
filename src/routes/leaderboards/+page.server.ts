@@ -1,4 +1,4 @@
-import { PUBLIC_API_DOMAIN } from '$env/static/private';
+import { PUBLIC_API_DOMAIN } from "$env/static/public";
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
