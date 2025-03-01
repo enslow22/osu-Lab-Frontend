@@ -7,19 +7,19 @@
     let { data } = $props()
     let leaderboardInfo = data.leaderboardInfo
 
-    let metricUnit = ''
-    let metricXAxis = ''
-    let metricTitle = ''
+    let metricUnit: string = $state('')
+    let metricXAxis: string = $state('')
+    let metricTitle: string = $state('')
 
     if (leaderboardInfo.metric == 'weighted_pp') {
-        metricUnit = 'pp'
-        metricXAxis = 'Profile pp'
-        metricTitle = 'Distribution of Profile pp for '+leaderboardInfo.name
+      metricUnit = 'pp'
+      metricXAxis = 'Profile pp'
+      metricTitle = 'Distribution of Profile pp for '+leaderboardInfo.name
     }
     else if (leaderboardInfo.metric == 'count_unique_beatmaps') {
-        metricUnit = ' Maps'
-        metricXAxis = 'Maps Cleared'
-        metricTitle = 'Distribution of Number of maps cleared for '+leaderboardInfo.name
+      metricUnit = ' Maps'
+      metricXAxis = 'Maps Cleared'
+      metricTitle = 'Distribution of Number of maps cleared for '+leaderboardInfo.name
     }
 
     // Helper function to format boolean values
