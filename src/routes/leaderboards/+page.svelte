@@ -16,21 +16,35 @@
   </script>
   
   <div class="p-4">
-    <a href="/create_leaderboard"><Button class="mb-2">Create a new leaderboard</Button></a>
+    <a href="/create_leaderboard"><Button class="mb-2 bg-blue-400">Create a new leaderboard</Button></a>
     
-    <div class="grid gap-4">
-      {#each items as item, index}
-        <div class="bg-muted/50 shadow-md rounded-lg p-2 hover:shadow-lg transition-shadow duration-300">
-          <a href="/leaderboards/{item.leaderboard_id}"><h2 class="text-lg font-semibold text-gray-200">{item.username}</h2>
-          <p class="text-gray-600 mt-2">{item.description}</p></a>
-          <div class="text-sm text-gray-500 mt-2">Item #{index + 1}</div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {#each items as item (item.leaderboard_id)}
+      <a href={`/leaderboards/${item.leaderboard_id}`} class="block rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+        <div class="bg-muted/50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+          <!-- Image container with fixed aspect ratio -->
+          <div class="relative h-48 overflow-hidden">
+            {#if item.creator_avatar_url}
+              <img 
+                src={item.creator_avatar_url} 
+                alt={item.name} 
+                class="w-full h-full object-cover"
+              />
+            {:else}
+              <div class="w-full h-full bg-muted/50 flex items-center justify-center">
+                <span class="text-gray-200">No image</span>
+              </div>
+            {/if}
+          </div>
+          
+          <!-- Card content -->
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-200 mb-2">{item.name}</h3>
+            <p class="text-gray-600">{item.description}</p>
+          </div>
         </div>
+      </a>
       {/each}
     </div>
-    
-    {#if items.length === 0}
-      <div class="bg-gray-100 p-4 rounded-md text-gray-500 text-center">
-        No items found.
-      </div>
-    {/if}
+
   </div>

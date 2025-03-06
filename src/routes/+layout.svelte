@@ -17,6 +17,7 @@
 		"/create_leaderboard": "Create a Leaderboard",
 		"/terms": "Terms of Service",
 		"/users/[user_id]": "User Profile",
+		"/query_builder": "Query Builder"
 	}
 	
 	let { data, children } = $props();
@@ -24,7 +25,7 @@
 
 <ModeWatcher/>
 <Sidebar.Provider>
-<AppSidebar/>
+<AppSidebar authstate={data.session}/>
 <Sidebar.Inset>
 <div class="flex flex-1 h-screen flex-col">
 	<header class="h-16 flex shrink-0 items-center gap-2 border-b pl-4">

@@ -1,42 +1,14 @@
 <script lang="ts">
     import * as Table from "$lib/components/ui/table/index.js";
     import * as Avatar from "$lib/components/ui/avatar/index.js";
-    import Separator from "./ui/separator/separator.svelte";
     import ModeIcon from "./mode-icon.svelte";
     import RankIcon from "./rank-icon.svelte";
     import { Link, SquareArrowOutUpRight } from "lucide-svelte";
     import dayjs from "dayjs"
     import relativeTime from "dayjs/plugin/relativeTime"
+    import utc from "dayjs/plugin/utc"
 
     let { info } = $props()
-    /**
-    let items = [
-        {
-            username: "user1111111111",
-            userId: 10651409,
-            beatmap: "beatmap1",
-            beatmapsetId: 321321321,
-            beatmapId: 321321312,
-            beatmapCover: "https://assets.ppy.sh/beatmaps/2056084/covers/cover.jpg?1733086817",
-            mapper: "enslow",
-            difficulty: "difficulty1",
-            stars: 5.0,
-            time: "2021-10-10 10:10:10",
-            mode: "osu",
-            accuracy: 99.99,
-            lazerScore: 500000,
-            pp: 1000,
-            rank: "A",
-            mods: "HDHR",
-            combo: 1000,
-            perfect: 25,
-            ok: 20,
-            meh: 1,
-            miss: 3,
-            avatarUrl: "https://a.ppy.sh/10651409?1737054819.jpeg",
-            scoreId: 111111111,
-        },
-    ];*/
 
     let items = info.lastTenScores
 
@@ -50,6 +22,7 @@
     }
 
     dayjs.extend(relativeTime)
+    dayjs.extend(utc)
 </script>
 
 
@@ -102,18 +75,18 @@
             <Table.Cell>
                 <div class="flex flex-col text-nowrap px-4">
                     <p class="text-muted-foreground items-center font-semibold text-2xl">{Math.round(item.pp ?? 0)}pp </p>
-                    <p class="text-muted-foreground items-center"><span class=" text-lg font-light">{item.lazer_score.toLocaleString()} | {item.accuracy}% </span></p>
+                    <p class="text-muted-foreground items-center"><span class=" text-lg font-light">{item.lazer_score.toLocaleString()} | {(item.accuracy*100).toFixed(2)}% </span></p>
                 </div>
             </Table.Cell>
             <Table.Cell>
                 <div class="flex flex-col">
-                    <p class="text-muted-foreground"><span class=" font-bold">{item.maxcombo.toLocaleString()}x</span>/1,000x</p>
+                    <p class="text-muted-foreground"><span class=" font-bold">{item.maxcombo.toLocaleString()}x</span>/{item.max_combo.toLocaleString()}x</p>
                     <p class="text-muted-foreground/50">&#123;{item.count300.toLocaleString()}/{item.count100.toLocaleString()}/{item.count50.toLocaleString()}/{item.countmiss.toLocaleString()}&#125;</p>
                 </div>
             </Table.Cell>
             <Table.Cell >
                 <div class="flex">
-                    <span class="text-muted-foreground text-md inline-block align-middle mx-4">{dayjs().to(dayjs(item.time))}
+                    <span class="text-muted-foreground text-md inline-block align-middle mx-4">{dayjs.utc().to(dayjs.utc(item.date))}
                     </span>
                     <span class="inline-block align-middle"><a href={"https://osu.ppy.sh/scores/"+item.score_id}><SquareArrowOutUpRight size={20} strokeWidth={1} /></a></span>
                 </div>

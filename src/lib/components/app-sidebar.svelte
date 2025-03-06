@@ -8,7 +8,14 @@
 	import * as Popover from "$lib/components/ui/popover/index.js";
 	import { Button } from "$lib/components/ui/button/index.js";
 	import { Input } from "$lib/components/ui/input/index.js";
-	// sample data
+
+	let {
+		ref = $bindable(null),
+		authstate,
+		...restProps
+	} = $props();
+	let user_id_form = $state();
+
 	const data = {
 		navMain: [
 			{
@@ -54,6 +61,7 @@
 					},
 					{
 						title: "Me!",
+						url: `/users/${authstate.user_id}`,
 						isActive: false,
 					}
 				],
@@ -81,12 +89,7 @@
 			},
 		],
 	};
-	let {
-		ref = $bindable(null),
-		...restProps
-	}: ComponentProps<typeof Sidebar.Root> = $props();
 
-	let user_id_form = $state();
 </script>
 
 <Sidebar.Root bind:ref {...restProps}>
@@ -157,7 +160,7 @@
 											>
 												<Input
 													type="user_id"
-													placeholder="user id or username"
+													placeholder="user id"
 													bind:value={user_id_form}
 												/>
 												<a href="/users/{user_id_form}"><Button type="submit">search</Button></a>

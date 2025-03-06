@@ -3,6 +3,7 @@
     import { BarChart, Tooltip } from "layerchart";
     import { bin } from 'd3-array';
     import { Separator } from "$lib/components/ui/separator/index.js";
+    import * as Avatar from "$lib/components/ui/avatar/index.js";
 
     let { data } = $props()
     let leaderboardInfo = data.leaderboardInfo
@@ -39,13 +40,9 @@
      * 
      * 
      */
-
-    console.log(leaderboardInfo.users)
-
     let binByValue = $state(bin<(typeof leaderboardInfo.users)[0], number>().value((d) => d.value).thresholds(thresholds))
     let userBins = $derived(binByValue(leaderboardInfo.users))
 </script>
-
 
 
 <div class="flex flex-col md:flex-row h-[calc(100vh-65px)] gap-4 p-2">
@@ -53,7 +50,7 @@
     <div class="w-full md:w-3/4 h-full flex flex-col gap-4">
       <!-- Top Left Div -->
       <div class="flex flex-row gap-4">
-      <div class="w-1/3 bg-muted/50 rounded-lg shadow-md overflow-hidden">
+      <div class="w-2/5 bg-muted/50 rounded-lg shadow-md overflow-hidden">
         <!-- Header section -->
         <div class="px-6 py-4 flex items-center justify-between border-b border-gray-600">
           <h2 class="text-xl font-semibold">{leaderboardInfo.name}</h2>
@@ -132,9 +129,10 @@
           </div>
         </div>
       </div>
-      <div class="w-2/3 bg-muted/50 rounded-lg shadow-md overflow-hidden">
+      <div class="w-3/5 bg-muted/50 rounded-lg shadow-md overflow-hidden">
         <div class="px-6 py-4 flex items-center justify-between border-b border-gray-600">
-          <h2 class="text-xl font-semibold">Graph here</h2>
+          <h2 class="text-xl font-semibold">Descriptive Statistics</h2>
+          <!-- Here let's put mean median mode quartiles stdev and variance of all the player's values-->
         </div>
       </div>
     </div>
@@ -184,8 +182,14 @@
       <h2 class="text-2xl bg-muted/100 text-center rounded">Leaderboard</h2>
       <div class="grid gap-1 pt-2">
         {#each leaderboardInfo.users as item, index}
-          <div class="bg-muted/50 flex shadow-md rounded-lg p-2 hover:shadow-lg transition-shadow duration-300">
-            <img class="mr-3 rounded-full h-10 w-10" src="{item.avatar_url}" alt="{item.username}'s avatar">
+          <div class="bg-muted/50 flex shadow-md rounded-lg p-2 hover:shadow-lg transition-shadow duration-300 gap-3">
+            <Avatar.Root>
+              <Avatar.Image
+                  src={item.avatar_url}
+                  alt={item.username}
+                />
+                <Avatar.Fallback>:3</Avatar.Fallback>
+            </Avatar.Root>
             <div class=" overflow-hidden">
             <a href="https://osu.ppy.sh/users/{item.user_id}"><h2 class="text-sm font-semibold text-gray-200">{item.username}</h2>
             <p class="text-gray-600 text-xs text-nowrap"><span class=" text-gray-500">#{index + 1} | </span> {item.value}{metricUnit}</p></a></div>
